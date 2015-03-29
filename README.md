@@ -14,7 +14,7 @@ And use the tkinter module.
 To install tkinter execute as root:
 
 ```
-$ pip install tkinter
+$ pip install python-tk
 ```
 
 #### Basic Usage:
