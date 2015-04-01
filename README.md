@@ -14,7 +14,11 @@ And use the tkinter module.
 To install tkinter execute as root:
 
 ```
-$ pip install python-tk
+# debian based
+$ apt-get install python3-tk
+
+# red hat based
+$ yum install python3-tk
 ```
 
 #### Basic Usage:
@@ -31,10 +35,10 @@ $ python main.py -h
 -------------
 Doing a map is so simple, you only need a text editor.
 
-    #   represent a wall
-    .   represent a corridor
-    s   represent the start point (only can be one)
-    e   represent the end point (you can put as much as you want)
+    #   represents a wall
+    .   represents a corridor
+    s   represents the start point (only can be one)
+    e   represents the end point (you can put as much as you want)
 
 You can view the files from the map folder to understand how it works.
 
