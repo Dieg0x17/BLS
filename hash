@@ -1,0 +1,11 @@
+hacer funcion hash
+
+	unos y ceros a laberinto cuadrado
+	multiples hilos uno en cada esquina
+	cada uno sigue un patron fijo o no fijo (hash con multiples salidas)
+	tanto en unos como en ceros asumiendo pasillo y muro y viceversa
+
+	reducir resolución o ampliar interpolando para obtener resultado de nbits
+
+
+posible algoritmo de busqueda para drones a distintas alturas

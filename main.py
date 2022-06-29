@@ -38,6 +38,16 @@ from nodo import Node
 import time
 from argparse import ArgumentParser
 
+import random
+
+mousex, mousey = 0,0
+
+def motion(event):
+    mousex, mousey = event.x, event.y
+
+
+
+
 def main():
 	argp = ArgumentParser(
 	prog='Backtracking labyrinth solver',
@@ -165,6 +175,7 @@ def main():
 	img = PhotoImage(file='icon.gif')
 	master.tk.call('wm', 'iconphoto', master._w, img)
 	master.resizable(0,0)
+	master.bind('<Motion>', motion)
 
 
 
@@ -226,7 +237,7 @@ def solve(
 		laberinto=labmap.load(lab_name)
 	else:
 		laberinto=labmap.laberinto(lab_w,lab_h,lab_exits,lab_ratio)
-		labmap.save(lab_outname+".map",laberinto)
+		#labmap.save(lab_outname+".map",laberinto)
 
 	solved=False
 	# tamaño del mapa en unidades discretas
@@ -283,9 +294,16 @@ def solve(
 		try:
 			while not solved:
 				if aux.ramas():
-					aux=aux.bajar()
+					coord_x = master.winfo_pointerx() - master.winfo_rootx()
+					coord_y = master.winfo_pointery() - master.winfo_rooty()
+					rnd = (coord_x+coord_y)-(coord_x-coord_y)
+					aux=aux.bajar(rnd)
 					aux.calcula_caminos(laberinto)
 					if verbose: print("[Verbose] Down to: "+str(aux))
+
+
+					for pseudo in (random.randrange(3)+rnd)%3*"a": # acceso a la serie pseudoaleatoria pseudoaleatorio + fuente de random mouse
+						pseudoo = (random.randrange(3)+rnd)%3
 
 					if steps: time.sleep(step_time) # pausa para permitir observar el comportamiento del algoritmo
 
@@ -299,6 +317,7 @@ def solve(
 						if color_change: # suma incremento en decimal al color
 							color_ruta="#"+("00000"+ str( hex( (eval("0x"+color_ruta[1:]) +increment )%16777215  )  )[2:])[-6:] 
 							if verbose: print("[Verbose] Path color changed to: "+color_ruta)
+
 						draw_rect(aux.coord ,color_ruta) # dibuja el nodo
 						if verbose: print("[Verbose] Drawing point")
 						master.update() 

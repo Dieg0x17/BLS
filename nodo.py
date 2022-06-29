@@ -84,7 +84,7 @@ class Node ():
 				l.append(n)
 		return l
 
-	def bajar(self):
+	def bajar(self, rnd):
 		"""
 			Devuelve un objeto tipo nodo. 
 			
@@ -105,7 +105,8 @@ class Node ():
 		op=self.ramas()
 		if op:
 			if len(op)>1:
-				n= random.choice(op)
+				selected = (random.randrange(len(op))+rnd) % len(op) # añadimos factor de raton como fuente de aleatoriedad 
+				n= op[selected]
 				# Algoritmos de poda TODO
 					# Ej: calcular la distancia desde el punto al final y elegir el camino con menor distancia.
 			else:
